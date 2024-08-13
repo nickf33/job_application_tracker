@@ -3,17 +3,35 @@
 import { Auth } from "@supabase/auth-ui-react";
 import { ThemeSupa } from "@supabase/auth-ui-shared";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { useState } from "react";
 
 export default function AuthForm() {
+  const [error, setError] = useState(null);
   const supabase = createClientComponentClient();
+
+  const handleAuthError = (error) => {
+    console.error("Auth error:", error);
+    setError(error.message || "An error occurred during authentication");
+  };
+
   return (
     <div className="w-full max-w-lg mx-auto mt-8 p-6 bg-white rounded-lg shadow-md">
+      {error && (
+        <div
+          className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4"
+          role="alert"
+        >
+          <strong className="font-bold">Error:</strong>
+          <span className="block sm:inline"> {error}</span>
+        </div>
+      )}
       <Auth
         supabaseClient={supabase}
         view="magic_link"
         showLinks={false}
         providers={[]}
-        redirectTo="http://localhost:3000/auth/callback"
+        redirectTo={`${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback`}
+        onError={handleAuthError}
         appearance={{
           theme: ThemeSupa,
           variables: {

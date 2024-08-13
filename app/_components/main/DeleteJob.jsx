@@ -1,56 +1,40 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { deleteWatch } from "../../server-actions/deleteWatch";
+import React, { useState } from "react";
+import { deleteJob } from "../../server-actions/deleteJob";
 
-export default function DeleteWatch({ watchId }) {
+export default function DeleteJob({ jobId, onJobDeleted }) {
   const [isConfirming, setIsConfirming] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
-  const [successMessage, setSuccessMessage] = useState("");
-
-  useEffect(() => {
-    let timeoutId;
-    if (successMessage) {
-      timeoutId = setTimeout(() => {
-        setSuccessMessage("");
-      }, 3000); // Clear message after 3 seconds
-    }
-    return () => {
-      if (timeoutId) clearTimeout(timeoutId);
-    };
-  }, [successMessage]);
+  const [error, setError] = useState(null);
 
   const handleDelete = async () => {
     setIsDeleting(true);
+    setError(null);
     try {
-      const result = await deleteWatch({ id: watchId });
+      const result = await deleteJob({ id: jobId });
       if (result.error) {
         throw new Error(result.error);
       }
-      setSuccessMessage("Watch deleted successfully!");
+      if (typeof onJobDeleted === "function") {
+        onJobDeleted(jobId);
+      }
       setIsConfirming(false);
     } catch (error) {
-      console.error("Error deleting watch:", error);
-      // You might want to show an error message here
+      console.error("Error deleting job:", error);
+      setError("Failed to delete job. Please try again.");
     } finally {
       setIsDeleting(false);
     }
   };
 
-  if (successMessage) {
-    return (
-      <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative">
-        <span className="block sm:inline">{successMessage}</span>
-      </div>
-    );
-  }
-
   if (isConfirming) {
     return (
       <div>
         <p className="text-white mb-2">
-          Are you sure you want to delete this watch?
+          Are you sure you want to delete this job application?
         </p>
+        {error && <p className="text-red-500 mb-2">{error}</p>}
         <button
           onClick={handleDelete}
           disabled={isDeleting}

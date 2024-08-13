@@ -11,6 +11,6 @@ export async function GET(request) {
     await supabase.auth.exchangeCodeForSession(code);
   }
 
-  // Redirect to the watch-list page after successful authentication
-  return NextResponse.redirect(new URL("/watch-list", request.url));
+  // Redirect to the job-list page after successful authentication
+  return NextResponse.redirect(new URL("/job-list", request.url));
 }

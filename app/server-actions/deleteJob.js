@@ -4,7 +4,7 @@ import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 
-export async function deleteWatch({ id }) {
+export async function deleteJob({ id }) {
   const cookieStore = cookies();
   const supabase = createServerComponentClient({ cookies: () => cookieStore });
   const {
@@ -17,16 +17,16 @@ export async function deleteWatch({ id }) {
   }
 
   const { error } = await supabase
-    .from("watches")
+    .from("job_applications")
     .delete()
     .match({ id, user_id: user.id });
 
   if (error) {
-    console.error("Error deleting data", error);
-    return { error: "Failed to delete watch. Please try again." };
+    console.error("Error deleting job:", error);
+    return { error: "Failed to delete job application. Please try again." };
   }
 
-  revalidatePath("/watch-list");
+  revalidatePath("/job-list");
 
-  return { message: "Watch deleted successfully" };
+  return { message: "Job application deleted successfully" };
 }
