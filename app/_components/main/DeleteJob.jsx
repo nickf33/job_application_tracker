@@ -28,7 +28,7 @@ export default function DeleteJob({ jobId, onJobDeleted }) {
 
   if (isConfirming) {
     return (
-      <div className="flex space-x-2">
+      <div className="flex space-x-2 gap-8">
         <button
           onClick={handleDelete}
           disabled={isDeleting}
