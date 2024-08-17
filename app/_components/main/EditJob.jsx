@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { updateJob } from "../../server-actions/updateJob";
+import { updateJob } from "../../server-actions/jobActions";
 import JobForm from "./JobForm";
 
 const EditJob = ({ job, onJobUpdated }) => {
@@ -35,7 +35,7 @@ const EditJob = ({ job, onJobUpdated }) => {
         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
         onClick={handleModal}
       >
-        Edit
+        View / Edit
       </button>
 
       {isModal && (

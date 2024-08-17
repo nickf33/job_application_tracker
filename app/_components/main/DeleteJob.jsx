@@ -1,50 +1,46 @@
 "use client";
 
 import React, { useState } from "react";
-import { deleteJob } from "../../server-actions/deleteJob";
+import { deleteJob } from "../../server-actions/jobActions";
 
 export default function DeleteJob({ jobId, onJobDeleted }) {
   const [isConfirming, setIsConfirming] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
-  const [error, setError] = useState(null);
 
   const handleDelete = async () => {
     setIsDeleting(true);
-    setError(null);
     try {
       const result = await deleteJob({ id: jobId });
       if (result.error) {
         throw new Error(result.error);
       }
-      if (typeof onJobDeleted === "function") {
-        onJobDeleted(jobId);
-      }
-      setIsConfirming(false);
+      onJobDeleted(jobId);
     } catch (error) {
       console.error("Error deleting job:", error);
-      setError("Failed to delete job. Please try again.");
     } finally {
       setIsDeleting(false);
+      setIsConfirming(false);
     }
   };
 
+  const buttonClass =
+    "w-24 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded";
+
   if (isConfirming) {
     return (
-      <div>
-        <p className="text-white mb-2">
-          Are you sure you want to delete this job application?
-        </p>
-        {error && <p className="text-red-500 mb-2">{error}</p>}
+      <div className="flex space-x-2 gap-8">
         <button
           onClick={handleDelete}
           disabled={isDeleting}
-          className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mr-2"
+          className={`${buttonClass} ${
+            isDeleting ? "opacity-50 cursor-not-allowed" : ""
+          }`}
         >
-          {isDeleting ? "Deleting..." : "Confirm Delete"}
+          {isDeleting ? "Deleting..." : "Confirm"}
         </button>
         <button
           onClick={() => setIsConfirming(false)}
-          className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
+          className="w-24 bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
         >
           Cancel
         </button>
@@ -53,10 +49,7 @@ export default function DeleteJob({ jobId, onJobDeleted }) {
   }
 
   return (
-    <button
-      onClick={() => setIsConfirming(true)}
-      className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-    >
+    <button onClick={() => setIsConfirming(true)} className={buttonClass}>
       Delete
     </button>
   );
