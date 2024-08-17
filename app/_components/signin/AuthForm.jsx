@@ -6,6 +6,7 @@ import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useState } from "react";
 
 export default function AuthForm() {
+  const [name, setName] = useState(null);
   const [error, setError] = useState(null);
   const supabase = createClientComponentClient();
 
