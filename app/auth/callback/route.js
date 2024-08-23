@@ -12,5 +12,7 @@ export async function GET(request) {
   }
 
   // Redirect to the job-list page after successful authentication
-  return NextResponse.redirect(new URL("/job-list", request.url));
+  return NextResponse.redirect(
+    new URL("/job-list", process.env.NEXT_PUBLIC_SITE_URL)
+  );
 }
