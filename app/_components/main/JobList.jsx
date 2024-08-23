@@ -15,7 +15,7 @@ export default function JobList({ initialJobs, error: initialError }) {
     if (initialJobs.length > 0) {
       fetchJobsWithNotes();
     }
-  }, []);
+  }, [initialJobs]);
 
   const fetchJobsWithNotes = async () => {
     try {
@@ -45,27 +45,72 @@ export default function JobList({ initialJobs, error: initialError }) {
   }
 
   return (
-    <div className="mt-6">
+    <div className="mt-6 space-y-6">
       {jobs.map((job) => (
-        <div key={job.id} className="mb-4 p-4 bg-gray-800 rounded-lg shadow">
-          <h2 className="text-xl text-white mb-2">
-            {job.company_name} - {job.position_title}
-          </h2>
-          <p className="text-gray-400 mb-2">Status: {job.status}</p>
-          <p className="text-gray-400 mb-2">
-            Applied on: {new Date(job.application_date).toLocaleDateString()}
-          </p>
-          {job.application_url && (
-            <a
-              href={job.application_url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-400 mb-8 hover:text-blue-300 block"
-            >
-              Application Link
-            </a>
-          )}
-          <div className="flex space-x-2 mt-2 gap-8">
+        <div
+          key={job.id}
+          className="bg-gray-800 rounded-lg shadow-lg overflow-hidden"
+        >
+          <div className="p-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+            {/* Column 1: Basic Info */}
+            <div>
+              <h2 className="text-2xl font-bold text-white mb-2">
+                {job.company_name}
+              </h2>
+              <h3 className="text-xl text-gray-300 mb-4">
+                {job.position_title}
+              </h3>
+              <p className="text-gray-400 mb-2">
+                <span className="font-semibold">Status:</span> {job.status}
+              </p>
+              <p className="text-gray-400 mb-2">
+                <span className="font-semibold">Applied on:</span>{" "}
+                {new Date(job.application_date).toLocaleDateString()}
+              </p>
+              {job.application_url && (
+                <a
+                  href={job.application_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-400 hover:text-blue-300 mb-2 block"
+                >
+                  Application Link
+                </a>
+              )}
+            </div>
+
+            {/* Column 2: Job Description */}
+            <div>
+              <h4 className="text-lg font-semibold text-white mb-2">
+                Job Description
+              </h4>
+              <p className="text-gray-300 whitespace-pre-wrap">
+                {job.job_description || "No description available."}
+              </p>
+            </div>
+
+            {/* Column 3: Notes with scroll */}
+            <div>
+              <h4 className="text-lg font-semibold text-white mb-2">Notes</h4>
+              <div className="h-64 overflow-y-auto pr-2">
+                {job.notes && job.notes.length > 0 ? (
+                  job.notes.map((note) => (
+                    <div key={note.id} className="bg-gray-700 p-3 rounded mb-2">
+                      <p className="text-white">{note.content}</p>
+                      <p className="text-sm text-gray-400 mt-1">
+                        {new Date(note.created_at).toLocaleString()}
+                      </p>
+                    </div>
+                  ))
+                ) : (
+                  <p className="text-gray-400">No notes available.</p>
+                )}
+              </div>
+            </div>
+          </div>
+
+          {/* Action Buttons */}
+          <div className="px-6 py-3 bg-gray-700 flex justify-end items-center space-x-2">
             <DeleteJob jobId={job.id} onJobDeleted={handleJobDeleted} />
             <EditJob job={job} onJobUpdated={fetchJobsWithNotes} />
           </div>
