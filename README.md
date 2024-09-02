@@ -1,4 +1,3 @@
-<p align="center">
 
 # Job Application Tracker
 
@@ -9,7 +8,6 @@ I've created this Job Application Tracker as a personal project to help manage a
 Foundation Tutorial is by Code Ryan https://www.youtube.com/@coderyan
 
   <img src="https://github.com/nickf33/job_application_tracker/raw/master/rmImages/signin.png" alt="Job Application Tracker Screenshot" width="600"/>
-</p>
 ## Features
 
 - Add new job applications
@@ -19,7 +17,9 @@ Foundation Tutorial is by Code Ryan https://www.youtube.com/@coderyan
 - Add and manage notes for each application
 - Filter and sort job applications
 - Real-time updates using Supabase
+  <img src="https://github.com/nickf33/job_application_tracker/blob/master/rmImages/addnew.png" alt="Job Application Tracker Screenshot" width="600"/>
 
+https://github.com/nickf33/job_application_tracker/blob/master/rmImages/addnew.png
 ## Tech Stack
 
 - Frontend: Next.js with React
