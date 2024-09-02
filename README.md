@@ -17,9 +17,9 @@ Foundation Tutorial is by Code Ryan https://www.youtube.com/@coderyan
 - Add and manage notes for each application
 - Filter and sort job applications
 - Real-time updates using Supabase
+
   <img src="https://github.com/nickf33/job_application_tracker/blob/master/rmImages/addnew.png" alt="Job Application Tracker Screenshot" width="600"/>
 
-https://github.com/nickf33/job_application_tracker/blob/master/rmImages/addnew.png
 ## Tech Stack
 
 - Frontend: Next.js with React
