@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Job Application Tracker
 
-## Getting Started
+## Overview
 
-First, run the development server:
+The Job Application Tracker is a web application designed to help job seekers manage and organise their job applications efficiently. Built with Next.js and Supabase, this app provides a user-friendly interface for tracking job applications, including details such as company names, position titles, application dates and current status.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Add new job applications
+- View a list of all job applications
+- Edit existing job application details
+- Delete job applications
+- Add and manage notes for each application
+- Filter and sort job applications
+- Real-time updates using Supabase
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Tech Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- Frontend: Next.js with React
+- Backend: Supabase
+- Styling: Tailwind CSS
+- State Management: React Context API
 
-## Learn More
+## Planned Alterations and Improvements
 
-To learn more about Next.js, take a look at the following resources:
+We're constantly working to improve the Job Application Tracker. Here are some of the alterations and new features we're planning to implement:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. **Enhanced State Management**: 
+   - Implement a more robust state management solution using React Context API.
+   - Create a centralised JobProvider to manage all job-related state and operations.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+2. **Improved Data Fetching**:
+   - Implement more efficient data fetching strategies, possibly using SWR or React Query.
+   - Add pagination for better performance with large numbers of job applications.
 
-## Deploy on Vercel
+3. **User Authentication**:
+   - Implement user authentication to allow multiple users to have their own private job application lists.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+4. **Advanced Filtering and Sorting**:
+   - Add more advanced filtering options (e.g., by date range, status, company).
+   - Implement custom sorting functionality.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+5. **Data Visualisation**:
+   - Add charts and graphs to visualise application status, response rates, etc.
+
+6. **Email Notifications**:
+   - Implement email notifications for application deadlines and status updates.
+
+7. **Mobile Responsiveness**:
+   - Improve the mobile user experience with a fully responsive design.
+
+8. **Offline Support**:
+   - Implement offline support using service workers for a progressive web app experience.
+
+9. **Integration with Job Boards**:
+   - Add functionality to import job listings from popular job boards.
+
+10. **Performance Optimisation**:
+    - Implement code splitting and lazy loading for improved performance.
+
+11. **Accessibility Improvements**:
+    - Ensure the application is fully accessible and compliant with WCAG guidelines.
+
+## Contributing
+
+We welcome contributions to the Job Application Tracker! If you have suggestions for improvements or bug fixes, please open an issue or submit a pull request.
+
+## Licence
+
+This project is licensed under the MIT Licence - see the [LICENCE.md](LICENCE.md) file for details.
