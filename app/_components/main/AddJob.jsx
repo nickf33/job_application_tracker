@@ -24,11 +24,11 @@ const AddJob = ({ onJobAdded }) => {
   };
 
   // Function to handle when a new job is added
-  const handleJobAdded = (newJob) => {
+  const handleJobAdded = async (newJob) => {
     if (typeof onJobAdded === "function") {
-      onJobAdded(newJob);
+      await onJobAdded(newJob);
     }
-    handleModal(); // Close the modal
+    handleModal();
   };
 
   return (
