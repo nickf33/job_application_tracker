@@ -56,6 +56,19 @@ As I continue to develop this project, here are some improvements I'm planning t
 
 8. **Accessibility Improvements**:
     - Ensure the application is fully accessible and compliant with WCAG guidelines.
+  
+  ## Known Issues
+
+As this project is still in development, there are a few known issues that I'm actively working on:
+
+- **Job List Refresh**: Adding a new job doesn't automatically refresh the page. This requires a reimplementation of the state handling mechanism.
+
+- **Modal Behavior**: The modal doesn't close automatically after updating a job. This needs to be addressed in the update function.
+
+- **Testing Coverage**: More comprehensive testing is required to ensure all components and functions are working as expected.
+
+I'm prioritizing these issues and working on resolving them in upcoming updates. If you encounter any additional issues, please feel free to open an issue in the GitHub repository.
+
 
 ## Personal Learning Goals
 
