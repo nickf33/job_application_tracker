@@ -7,7 +7,7 @@ I've created this Job Application Tracker as a personal project to help manage a
 Foundation Tutorial is by Code Ryan https://www.youtube.com/@coderyan
 
 <p align="center">
-  <img src="[images/job-tracker-screenshot.png](https://github.com/nickf33/job_application_tracker/blob/master/rmImages/signin.png)" alt="Job Application Tracker Screenshot" width="600"/>
+  <img src="https://github.com/nickf33/job_application_tracker/raw/master/rmImages/signin.png" alt="Job Application Tracker Screenshot" width="600"/>
 </p>
 ## Features
 
